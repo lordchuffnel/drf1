@@ -60,7 +60,7 @@ export default {
       })
         .then((res) => res.json())
         .then((res) => {
-          this.$emit('rated');
+          this.$emit('update');
         })
         .catch((err) => console.log(err));
     },

@@ -1,7 +1,6 @@
 <template>
   <div class="layout">
     <div>
-      <h3>List of Movies</h3>
       <MovieItem
         v-for="movie in movies"
         :key="movie.id"
@@ -10,13 +9,14 @@
         @movie-delete="movieDelete($event)"
         @movie-edit="movieEdit($event)"
       />
+      <button @click='newMovie()'>New Movie</button>
     </div>
     <MovieDetails
       v-if="selectedMovie"
       :movie="selectedMovie"
-      @rated="rated()"
+      @update="update()"
     />
-    <MovieEdit v-if="editedMovie" :movie="editedMovie" />
+    <MovieEdit v-if="editedMovie" :movie="editedMovie" @update="update()"/>
   </div>
 </template>
 
@@ -56,8 +56,12 @@ export default {
         })
         .catch((err) => console.log(err));
     },
-    rated() {
+    update() {
       this.getMovies();
+    },
+    newMovie() {
+      this.selectedMovie = null;
+      this.editedMovie = {title: '', description: ''};
     },
     getMovies() {
       fetch('http://127.0.0.1:8000/api/movies/', {
