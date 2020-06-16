@@ -6,7 +6,10 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import VueCookies from 'vue-cookies';
 import router from './router'
+
+
 
 library.add(faFilm);
 library.add(faStar);
@@ -14,6 +17,7 @@ library.add(faTrash);
 library.add(faEdit);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
+Vue.use(VueCookies);
 
 Vue.config.productionTip = false
 

@@ -15,7 +15,7 @@
 <script>
 export default {
   name: 'MovieEdit',
-  props: ['movie'],
+  props: ['movie', 'token'],
   data() {
     return {
       localMovie: { ...this.movie },
@@ -35,7 +35,7 @@ export default {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: 'Token ', //find token from user
+            Authorization: `Token: ${this.token}`
           },
           body: JSON.stringify({
             title: this.localMovie.title,
@@ -48,11 +48,11 @@ export default {
           })
           .catch((err) => console.log(err));
       } else {
-                fetch(`http://127.0.0.1:8000/api/movies/`, {
+        fetch(`http://127.0.0.1:8000/api/movies/`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: 'Token ', //find token from user
+            Authorization: `Token: ${this.token}`
           },
           body: JSON.stringify({
             title: this.localMovie.title,

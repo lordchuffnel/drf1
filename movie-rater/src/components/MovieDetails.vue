@@ -41,7 +41,7 @@
 <script>
 export default {
   name: 'MovieDetails',
-  props: ['movie'],
+  props: ['movie', 'token'],
   data() {
     return {
       stars: [0, 1, 2, 3, 4],
@@ -54,7 +54,7 @@ export default {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Token ', //find token from user
+          'Authorization': `Token ${this.token}`
         },
         body: JSON.stringify({stars: rate +1})
       })
